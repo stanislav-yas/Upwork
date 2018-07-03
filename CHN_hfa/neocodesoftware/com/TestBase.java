@@ -17,6 +17,7 @@ public class TestBase {
   @Before
   public void setUp() {
     startChromeViaProxy();
+    wait = new WebDriverWait(driver, 20);
   }
 
 
