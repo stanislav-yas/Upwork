@@ -12,6 +12,8 @@ public class CHNHFAppsTest extends TestBase {
 
   @Test
   public void stepsTest(){
+    driver.manage().window().maximize();
+    //driver.get("https://test.canadahomestaynetwork.ca/chn-host-family-application/?step=1");
     driver.get("https://chn-host.neocodesoftware.com/chn-host-family-application/?step=1");
     driver.findElement(By.cssSelector("input.new_app")).click();
     completeStep1();
@@ -21,8 +23,8 @@ public class CHNHFAppsTest extends TestBase {
     completeStep5();
     completeStep6();
     completeStep7();
-    completeStep8();
-    wait.until(ExpectedConditions.textToBe((By.cssSelector("td.header")),"Success!"));
+//    completeStep8();
+    takeScreenshot();
   }
 
   private void completeStep1(){
@@ -89,7 +91,6 @@ public class CHNHFAppsTest extends TestBase {
   }
 
   private void completeStep3(){
-    //wait.until(ExpectedConditions.textToBe((By.cssSelector("div.chi_acf_field  p")),"Preferences stuff"));
     driver.findElement(By.cssSelector("select[name='preferred_gender'] option[value='Either']")).click();
     driver.findElement(By.cssSelector("input[name='preferred_age[]'][value='No preference']")).click();
     driver.findElement(By.cssSelector("select[name='will_take_smoker'] option[value='No']")).click();
@@ -105,7 +106,6 @@ public class CHNHFAppsTest extends TestBase {
   }
 
   private void completeStep4() {
-    //wait.until(ExpectedConditions.textToBe((By.cssSelector("div.chi_acf_field  p")),"Background stuff"));
     driver.findElement(By.cssSelector("textarea[name='languages']")).sendKeys("English");
     driver.findElement(By.cssSelector("input[name='previous_host'][value='No']")).click();
     driver.findElement(By.cssSelector("div.references_table > div:nth-child(3) > div.ref_first_name > input"))
@@ -160,10 +160,10 @@ public class CHNHFAppsTest extends TestBase {
   }
 
   private void completeStep8() {
-    //#content > div > div > div.chi_confirmation_wrap > iframe#chi_registration_iframe
     driver.switchTo().frame(driver.findElement(By.cssSelector("iframe.chi_registration_iframe")));
     driver.findElement(By.cssSelector("input[name='password']")).sendKeys("somepassword");
     driver.findElement(By.cssSelector("input[name='confirmPassword']")).sendKeys("somepassword");
     driver.findElement(By.cssSelector("input[name='registration.register]'")).click();
+    wait.until(ExpectedConditions.textToBe((By.cssSelector("td.header")),"Success!"));
   }
 }
