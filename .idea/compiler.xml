@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="chn-host-family-app" />
+        <module name="Scraping" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="chn-host-family-app" target="1.8" />
+      <module name="Scraping" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
