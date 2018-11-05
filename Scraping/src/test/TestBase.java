@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import po.PageObject;
 
 import java.io.File;
 import java.net.URL;
@@ -26,6 +27,7 @@ public class TestBase {
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
     wait = new WebDriverWait(driver, 20);
+    PageObject.init(driver,wait);
   }
 
   @After
