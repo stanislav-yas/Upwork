@@ -16,15 +16,18 @@ public class Scrape1Test extends TestBase {
     SearchPage page = new SearchPage("https://www.iecaonline.com/quick-links/member-directory/");
     page.open();
     int rowCount = page.getRowCount();
-    for (int i = 0; i < rowCount; i++) {
-      WebElement row = page.getRow(i); //"#member-grid > tbody > tr:nth-child(" + (i + 1)+ ") > td"
-      String firstName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
-      String lastName = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
-      String primaryAddress = row.findElement(By.cssSelector("td:nth-child(10)")).getText();
-      row.findElement(By.cssSelector("td:nth-child(2)")).findElement(By.cssSelector("a")).click();
-      wait.until(ExpectedConditions.textToBePresentInElementLocated((By.cssSelector("#primary-header > div.container > h1")), "Profile Details"));
-      String email = driver.findElement(By.cssSelector("div.uprofile_dis_wrap label:nth-child(6) a")).getText();
-      driver.navigate().back();
-    }
+    do{
+      for (int i = 0; i < rowCount; i++) {
+        WebElement row = page.getRow(i); //"#member-grid > tbody > tr:nth-child(" + (i + 1)+ ") > td"
+        String firstName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
+        String lastName = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
+        String primaryAddress = row.findElement(By.cssSelector("td:nth-child(10)")).getText();
+        row.findElement(By.cssSelector("td:nth-child(2)")).findElement(By.cssSelector("a")).click();
+        page.wait.until(ExpectedConditions.textToBe(By.cssSelector("#primary-header > div.container > h1"), "PROFILE DETAILS"));
+        String email = driver.findElement(By.cssSelector("div.uprofile_dis_wrap label:nth-child(6) a")).getText();
+        System.out.println((i+1) + ") "+ firstName + " " + lastName + " add: " + primaryAddress + " email:" + email);
+        driver.navigate().back();
+      }
+    }while (page.nextSearchResultPage());
   }
 }

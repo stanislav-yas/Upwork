@@ -1,6 +1,6 @@
 package po;
 
-public class Page extends PageObject {
+public class Page extends SlowPageObject {
 
   private String url;
 

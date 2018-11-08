@@ -1,7 +1,6 @@
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +9,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import po.PageObject;
+import po.SlowPageObject;
 
 import java.io.File;
 import java.net.URL;
@@ -18,7 +17,6 @@ import java.net.URL;
 public class TestBase {
 
   WebDriver driver;
-  WebDriverWait wait;
 
   @Before
   public void setUp() throws Exception{
@@ -26,8 +24,7 @@ public class TestBase {
     //startChromeViaProxy();
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
-    wait = new WebDriverWait(driver, 20);
-    PageObject.init(driver,wait);
+    SlowPageObject.init(driver, 5);
   }
 
   @After
