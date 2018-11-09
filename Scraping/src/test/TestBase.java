@@ -11,8 +11,13 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import po.SlowPageObject;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 
 public class TestBase {
 
@@ -20,11 +25,23 @@ public class TestBase {
 
   @Before
   public void setUp() throws Exception{
+    //csvWrite();
     startChrome();
     //startChromeViaProxy();
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
-    SlowPageObject.init(driver, 5);
+    SlowPageObject.init(driver, 10);
+  }
+
+  public void csvWrite(){
+    Charset charset = Charset.forName("US-ASCII");
+    String s = "teststring";
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("result.csv"))) {
+        writer.write(s + ";");
+        writer.newLine();
+    } catch (IOException x) {
+      System.err.format("IOException: %s%n", x);
+    }
   }
 
   @After

@@ -35,6 +35,7 @@ public class SearchPage extends Page {
   public boolean nextSearchResultPage(){
     boolean res = isButtonNextEnabled();
     buttonNext.click();
+    getRowCount();
     return res;
   }
 
