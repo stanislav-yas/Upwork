@@ -8,8 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import po.SlowPageObject;
+import po.AjaxPageObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 
 public class TestBase {
 
@@ -30,7 +28,6 @@ public class TestBase {
     //startChromeViaProxy();
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
-    SlowPageObject.init(driver, 10);
   }
 
   public void csvWrite(){

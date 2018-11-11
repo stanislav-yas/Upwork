@@ -1,22 +1,25 @@
-package po;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import po.AjaxPage;
 
 import java.util.List;
 
-public class SearchPage extends AjaxPage {
+public class MySearchPage extends po.AjaxPage {
 
-  public List<WebElement> resultRows;
+  @FindBy(how = How.CSS, using = "#member-grid > tbody > tr")
+  protected List<WebElement> resultRows;
 
+  @FindBy(css = "a#member-grid_previous")
   protected WebElement buttonPrevious;
 
+  @FindBy(css = "a#member-grid_next")
   protected WebElement buttonNext;
 
-  public SearchPage(WebDriver driver, int timeout, String url){
+  public MySearchPage(WebDriver driver, int timeout, String url){
     super(driver, timeout, url);
   }
 
@@ -36,7 +39,6 @@ public class SearchPage extends AjaxPage {
     buttonNext.click();
     wait.until(ExpectedConditions.stalenessOf(resultRows.get(0)));
     wait.until(ExpectedConditions.visibilityOf(resultRows.get(0)));
-    //getRowCount();
     return res;
   }
 
@@ -46,6 +48,10 @@ public class SearchPage extends AjaxPage {
 
   public WebElement getRow(int index){
     return resultRows.get(index);
+  }
+
+  public WebElement getCell(int rowIndex, int columnIndex){
+    return getRow(rowIndex).findElement(By.cssSelector("td:nth-child("+(columnIndex+1)+")"));
   }
 
 }
