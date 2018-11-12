@@ -19,12 +19,12 @@ import java.nio.charset.Charset;
 
 public class TestBase {
 
-  WebDriver driver;
+  WebDriver driver, driver2;
 
   @Before
   public void setUp() throws Exception{
     //csvWrite();
-    startChrome();
+    //startChrome();
     //startChromeViaProxy();
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
@@ -43,7 +43,12 @@ public class TestBase {
 
   @After
   public void tearDown() {
-    driver.quit();
+    if(driver != null){
+      driver.quit();
+    }
+    if(driver2 != null){
+      driver2.quit();
+    }
   }
 
   private void startChrome(){
