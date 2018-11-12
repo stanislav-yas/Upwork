@@ -11,6 +11,10 @@ public class DetailPage extends AjaxPage {
   }
 
   public String getEmail(){
-    return driver.findElement(By.cssSelector("div.uprofile_dis_wrap label:nth-child(6) a")).getText();
+    String email = "";
+    try {
+      email = driver.findElement(By.cssSelector("div.uprofile_dis_wrap label:nth-child(6) a")).getText();
+    }catch (Exception ex){}
+    return  email;
   }
 }

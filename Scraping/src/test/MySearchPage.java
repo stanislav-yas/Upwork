@@ -35,11 +35,13 @@ public class MySearchPage extends po.AjaxPage {
   }
 
   public boolean nextSearchResultPage(){
-    boolean res = isButtonNextEnabled();
-    buttonNext.click();
-    wait.until(ExpectedConditions.stalenessOf(resultRows.get(0)));
-    wait.until(ExpectedConditions.visibilityOf(resultRows.get(0)));
-    return res;
+    boolean enabled = isButtonNextEnabled();
+    if (enabled) {
+      buttonNext.click();
+      wait.until(ExpectedConditions.stalenessOf(resultRows.get(0)));
+      wait.until(ExpectedConditions.visibilityOf(resultRows.get(0)));
+    }
+    return enabled;
   }
 
   public int getRowCount(){

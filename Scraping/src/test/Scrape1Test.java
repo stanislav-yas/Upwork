@@ -14,32 +14,38 @@ public class Scrape1Test extends TestBase {
     BufferedWriter writer = null;
     try {
       writer = new BufferedWriter(new FileWriter("result.csv"));
-      driver.manage().window().setSize(new Dimension(960, 740));
-      driver.manage().window().setPosition(new Point(0,0));
-      driver2.manage().window().setSize(new Dimension(960, 740));
-      driver2.manage().window().setPosition(new Point(960,0));
-      MySearchPage page = new MySearchPage(driver,5,"https://www.iecaonline.com/quick-links/member-directory/");
+      driver.manage().window().setSize(new Dimension(975, 752));
+      driver.manage().window().setPosition(new Point(1678,0));
+      driver2.manage().window().setSize(new Dimension(975, 793));
+      driver2.manage().window().setPosition(new Point(1678,247));
+      MySearchPage page = new MySearchPage(driver,10,"https://www.iecaonline.com/quick-links/member-directory/");
       int pageCnt = 0;
       int rowCnt = 0;
+      writer.write("Page;Row;First_Name;Last_Name;Primary_Address;Email") ;writer.newLine();
       do {
         pageCnt++;
-        for (int i = 0; i < 3 /*page.getRowCount()*/; i++) {
+        for (int i = 0; i < page.getRowCount(); i++) {
           String firstName = page.getCell(i,1).getText();
           String lastName = page.getCell(i,2).getText();
           String primaryAddress = page.getCell(i,9).getText();
           String url = page.getCell(i,1).findElement(By.cssSelector("a")).getAttribute("href");
-          DetailPage dpage = new DetailPage(driver2, 5, url);
-          String email = dpage.getEmail();
+          String email = "";
+          try {
+            DetailPage dpage = new DetailPage(driver2, 5, url);
+            email = dpage.getEmail();
+          }catch (Exception ex){
+            System.out.println("Error:"+ex.getMessage());
+          }
           rowCnt++;
           writer.write((pageCnt) + ";" + (rowCnt) + ";" + firstName + ";" + lastName + ";" + primaryAddress + ";" + email);
           writer.newLine(); writer.flush();
           //driver.navigate().back();
         }
-      } while (page.nextSearchResultPage() && rowCnt < 10);
+      } while (page.nextSearchResultPage());
     }catch (Exception ex){
       writer.flush(); writer.close();
       throw ex;
     }
   }
-
+  ;
 }
