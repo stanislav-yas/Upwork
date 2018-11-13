@@ -1,3 +1,5 @@
+package base;
+
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.OutputType;
@@ -19,7 +21,7 @@ import java.nio.charset.Charset;
 
 public class TestBase {
 
-  WebDriver driver, driver2;
+  protected WebDriver driver, driver2;
 
   @Before
   public void setUp() throws Exception{

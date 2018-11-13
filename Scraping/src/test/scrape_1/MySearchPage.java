@@ -1,3 +1,5 @@
+package scrape_1;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +10,7 @@ import po.AjaxPage;
 
 import java.util.List;
 
-public class MySearchPage extends po.AjaxPage {
+public class MySearchPage extends AjaxPage {
 
   @FindBy(how = How.CSS, using = "#member-grid > tbody > tr")
   protected List<WebElement> resultRows;

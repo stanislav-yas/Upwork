@@ -1,3 +1,6 @@
+package scrape_1;
+
+import base.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,7 +42,6 @@ public class Scrape1Test extends TestBase {
           rowCnt++;
           writer.write((pageCnt) + ";" + (rowCnt) + ";" + firstName + ";" + lastName + ";" + primaryAddress + ";" + email);
           writer.newLine(); writer.flush();
-          //driver.navigate().back();
         }
       } while (page.nextSearchResultPage());
     }catch (Exception ex){
@@ -47,5 +49,4 @@ public class Scrape1Test extends TestBase {
       throw ex;
     }
   }
-  ;
 }
