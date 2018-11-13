@@ -1,4 +1,4 @@
-package base;
+package util;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import po.AjaxPageObject;
 
 import java.io.BufferedWriter;
 import java.io.File;

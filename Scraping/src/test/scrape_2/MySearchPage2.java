@@ -15,35 +15,13 @@ public class MySearchPage2 extends AjaxPage {
   @FindBy(how = How.CSS, using = "#directoryTable > tbody > tr")
   protected List<WebElement> resultRows;
 
-  //@FindBy(css = "a#member-grid_previous")
-  protected WebElement buttonPrevious;
+  @FindBy(css="div#entryWindow.modal_window")
+  protected WebElement modal_window;
 
-  //@FindBy(css = "a#member-grid_next")
-  protected WebElement buttonNext;
+  //a.close_modal
 
   public MySearchPage2(WebDriver driver, int timeout, String url){
     super(driver, timeout, url);
-  }
-
-  public boolean isButtonNextEnabled(){
-    if(buttonNext == null){
-      return false;
-    }
-    if(buttonNext.getAttribute("class").contains("disabled")){
-      return false;
-    }else{
-      return true;
-    }
-  }
-
-  public boolean nextSearchResultPage(){
-    boolean enabled = isButtonNextEnabled();
-    if (enabled) {
-      buttonNext.click();
-      wait.until(ExpectedConditions.stalenessOf(resultRows.get(0)));
-      wait.until(ExpectedConditions.visibilityOf(resultRows.get(0)));
-    }
-    return enabled;
   }
 
   public int getRowCount(){
@@ -58,4 +36,18 @@ public class MySearchPage2 extends AjaxPage {
     return getRow(rowIndex).findElement(By.cssSelector("td:nth-child("+(columnIndex+1)+")"));
   }
 
+  public String getName(int rowIndex){
+    return getCell(rowIndex, 0).getText();
+  }
+
+  public String getProfession(int rowIndex){
+    return getCell(rowIndex, 1).getText();
+  }
+
+  public String getEmail(int rowIndex){
+    getCell(rowIndex, 0).click();
+    wait.until(ExpectedConditions.visibilityOf(modal_window));
+    WebElement email = modal_window.findElement(By.id("div#entryText > p:nth-child(4) br"));
+    return "";
+  }
 }

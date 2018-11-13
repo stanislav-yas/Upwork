@@ -1,6 +1,6 @@
 package scrape_1;
 
-import base.TestBase;
+import util.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
