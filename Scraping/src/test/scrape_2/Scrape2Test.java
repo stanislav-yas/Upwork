@@ -22,10 +22,15 @@ public class Scrape2Test extends TestBase {
     driver = new ChromeDriver();
     try {
       writer = new CsvWriter("scrape2.csv");
+      //driver.manage().window().setSize(new Dimension(975, 752));
+      driver.manage().window().setPosition(new Point(1920/*1678*/,0));
       driver.manage().window().maximize();
-      /*driver.manage().window().setSize(new Dimension(975, 752));
-      driver.manage().window().setPosition(new Point(1678,0));*/
       page = new MySearchPage2(driver, 8, "https://integrativemedicine.arizona.edu/alumni.html");
+      page.selectCountry("Brazil");
+      page.search();
+      processResultTable();
+      page.selectCountry("Israel");
+      page.search();
       processResultTable();
     }catch (Exception ex){
       writer.flush(); writer.close();
@@ -34,7 +39,7 @@ public class Scrape2Test extends TestBase {
   }
 
   private void processResultTable(){
-    for (int i = 0; i < 3/*page.getRowCount()*/; i++) {
+    for (int i = 0; i < page.getRowCount(); i++) {
       writer.addValue(page.getName(i))
           .addValue(page.getProfession(i))
           .addValue(page.getEmail(i))
