@@ -25,7 +25,7 @@ public class MySearchPage2 extends AjaxPage {
   protected WebElement stateField;
 
   protected WebElement countryField;
-  protected Select countrySelect /*= new Select(countryField)*/;
+  public Select countrySelect /*= new Select(countryField)*/;
 
   protected WebElement searchBtn;
 
@@ -35,6 +35,7 @@ public class MySearchPage2 extends AjaxPage {
   }
 
   public void selectCountry(String country){
+    wait.until(d -> countrySelect.getOptions().size()>1 );
     countrySelect.selectByValue(country);
   }
 
