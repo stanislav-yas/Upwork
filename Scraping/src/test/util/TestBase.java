@@ -17,10 +17,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.time.Duration;
+import java.time.Instant;
 
 public class TestBase {
 
   protected WebDriver driver, driver2;
+  private Instant beginTime = Instant.now();
 
   @Before
   public void setUp() throws Exception{
@@ -50,6 +53,8 @@ public class TestBase {
     if(driver2 != null){
       driver2.quit();
     }
+    Duration timeElapsed = Duration.between(beginTime, Instant.now());
+    System.out.println("Time elapsed: "+ timeElapsed);
   }
 
   private void startChrome(){

@@ -21,29 +21,42 @@ public class Scrape2Test extends TestBase {
   public void scrape() throws Exception{
     driver = new ChromeDriver();
     try {
+      driver.manage().window().setSize(new Dimension(975, 1039));
+      driver.manage().window().setPosition(new Point(1678,0));
+      //driver.manage().window().maximize();
       writer = new CsvWriter("scrape2.csv");
-      //driver.manage().window().setSize(new Dimension(975, 752));
-      driver.manage().window().setPosition(new Point(1920/*1678*/,0));
-      driver.manage().window().maximize();
+      writer.addValue("Name; Speciality; Clinic; City; Country; Email"); writer.nextLine();
       page = new MySearchPage2(driver, 8, "https://integrativemedicine.arizona.edu/alumni.html");
-      System.out.println("Number of countries: " + page.countrySelect.getOptions().size());
-      System.out.println("Number of countries: " + page.countrySelect.getOptions().size());
-      page.selectCountry("Brazil");
-      page.search();
+      page.selectCountry("Japan");
+      System.out.println("rows found: " + page.search());
       processResultTable();
       page.selectCountry("Israel");
-      page.search();
+      System.out.println("rows found: " + page.search());
+      processResultTable();
+      page.selectCountry("Canada");
+      System.out.println("rows found: " + page.search());
+      processResultTable();
+      page.selectCountry("US");
+      page.selectState("FL");
+      System.out.println("rows found: " + page.search());
+      processResultTable();
+      page.selectState("IL");
+      System.out.println("rows found: " + page.search());
       processResultTable();
     }catch (Exception ex){
-      writer.flush(); writer.close();
       throw ex;
+    }finally {
+      writer.flush(); writer.close();
     }
   }
 
   private void processResultTable(){
     for (int i = 0; i < page.getRowCount(); i++) {
       writer.addValue(page.getName(i))
-          .addValue(page.getProfession(i))
+          .addValue(page.getSpeciality(i))
+          .addValue(page.getClinic(i))
+          .addValue(page.getCity(i))
+          .addValue(page.getCountry(i))
           .addValue(page.getEmail(i))
           .nextLine();
     }

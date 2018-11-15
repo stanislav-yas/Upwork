@@ -15,32 +15,39 @@ import java.util.List;
 public class MySearchPage2 extends AjaxPage {
 
   @FindBy(how = How.CSS, using = "#directoryTable > tbody > tr[style='display: table-row;'")
-  protected List<WebElement> resultRows;
+  private List<WebElement> resultRows;
 
   @FindBy(css="div#entryWindow.modal_window")
-  protected WebElement modal_window;
+  private WebElement modal_window;
 
-  protected WebElement cityField;
+  //protected WebElement cityField;
 
-  protected WebElement stateField;
+  private WebElement stateField;
+  private Select stateSelect = new Select(stateField);
 
-  protected WebElement countryField;
-  public Select countrySelect /*= new Select(countryField)*/;
+  private WebElement countryField;
+  private Select countrySelect = new Select(countryField);
 
-  protected WebElement searchBtn;
+  private WebElement searchBtn;
 
   public MySearchPage2(WebDriver driver, int timeout, String url){
     super(driver, timeout, url);
-    countrySelect = new Select(countryField);
+    wait.until(f -> stateSelect.getOptions().size()>1 );
+    wait.until(f -> countrySelect.getOptions().size()>1 );
   }
 
   public void selectCountry(String country){
-    wait.until(d -> countrySelect.getOptions().size()>1 );
     countrySelect.selectByValue(country);
   }
 
-  public void search(){
+  public void selectState(String state){
+    stateSelect.selectByValue(state);
+  }
+
+  public int search(){
     clickElementJS(searchBtn);
+    //System.out.println("rows found: " + resultRows.size());
+    return resultRows.size();
     //wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(resultRows.get(0))));
   }
 
@@ -60,8 +67,20 @@ public class MySearchPage2 extends AjaxPage {
     return getCell(rowIndex, 0).getText();
   }
 
-  public String getProfession(int rowIndex){
-    return getCell(rowIndex, 1).getText();
+  public String getSpeciality(int rowIndex){
+    return getCell(rowIndex, 2).getText();
+  }
+
+  public String getClinic(int rowIndex){
+    return getCell(rowIndex, 3).getText();
+  }
+
+  public String getCity(int rowIndex){
+    return getCell(rowIndex, 4).getText();
+  }
+
+  public String getCountry(int rowIndex){
+    return getCell(rowIndex, 6).getText();
   }
 
   public String getEmail(int rowIndex){
