@@ -27,34 +27,22 @@ public class TestBase {
 
   @Before
   public void setUp() throws Exception{
-    //csvWrite();
     //startChrome();
     //startChromeViaProxy();
     //startRemoteBrowser(Platform.MAC.toString(),"chrome");
     //startRemoteBrowser(Platform.WINDOWS.toString(),"chrome");
   }
 
-  public void csvWrite(){
-    Charset charset = Charset.forName("US-ASCII");
-    String s = "teststring";
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter("result.csv"))) {
-        writer.write(s + ";");
-        writer.newLine();
-    } catch (IOException x) {
-      System.err.format("IOException: %s%n", x);
-    }
-  }
-
   @After
   public void tearDown() {
+    Duration timeElapsed = Duration.between(beginTime, Instant.now());
+    System.out.println("Time elapsed: "+ timeElapsed);
     if(driver != null){
       driver.quit();
     }
     if(driver2 != null){
       driver2.quit();
     }
-    Duration timeElapsed = Duration.between(beginTime, Instant.now());
-    System.out.println("Time elapsed: "+ timeElapsed);
   }
 
   private void startChrome(){
