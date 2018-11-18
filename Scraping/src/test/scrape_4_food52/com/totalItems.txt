@@ -1,0 +1,52 @@
+Kitchen
+  Appliances - 6 x 1 = 6 items
+  Bakeware - 48 x 5 = 240 items
+  Canning & Jamming - 5 x 1 = 5 items
+  Coffee & Tea Tools - 48 x 2 = 96 items
+  Cookbooks - 21 x 1 = 21 items
+  Cooking Utensils - 48 x 2 = 96 items
+  Cookware - 48 x 5 = 240 items
+  DIY Kits - 16 x 1 = 16 items
+  Kitchen Linens - 48 x 2 = 96 items
+  Kitchen Storage & Organization - 48 x 5 = 240 items
+  Kitchen Tools - 48 x 5 = 240 items
+  Knives & Cutting Boards - 48 x 3 = 144 items
+Table
+  Barware - 48 x 4 = 192 items
+  Bowls - 48 x 2 = 96 items
+  Dinnerware & Flatware - 48 x 3 = 144 items
+  Mugs & Glassware - 48 x 4 = 192 items
+  Serveware - 48 x 7 = 336 items
+  Table Linens - 48 x 2 = 96 items
+  Tabletop Accessories - 48 x 4 = 192 items
+Home
+  Accessories & Furnishings - 48 x 6 = 288 items
+  Cleaning & Storage - 48 x 3 = 144 items
+  Clothing & Accessories - 48 x 2 = 96 items
+  Entertaining - 27 x 1 = 27 items
+  For Kids - 27 x 1 = 27 items
+  Holiday Decor - 48 x 2 = 96 items
+  Lighting & Candles - 48 x 2 = 96 items
+  Reading & Games - 21 x 1 = 21 items
+  Textiles - 48 x 2 = 96 items
+Outdoors
+  Camping & Travel - 48 x 3 = 144 items
+  Garden - 48 x 3 = 144 items
+  Grill - 48 x 2 = 96 items
+  Outdoor Entertaining - 48 x 2 = 96 items
+One-of-a-Kind
+  By Food52 - 48 x 2 = 96 items
+  Exclusives - 48 x 12 = 576 items
+  Vintage - 48 x 4 = 192 items
+Pantry
+  Canned Goods & Condiments - 48 x 2 = 96 items
+  Chocolates & Confections - 44 x 1 = 44 items
+  Coffee & Tea - 15 x 1 = 15 items
+  Drinks & Cocktails - 23 x 1 = 23 items
+  Fresh Ingredients - 18 x 1 = 18 items
+  Grains, Flours & Pastas - 14 x 1 = 14 items
+  Oils, Vinegars & Syrups - 36 x 1 = 36 items
+  Snacks - 24 x 1 = 24 items
+  Spices - 43 x 1 = 43 items
+Total items: 5236
+Time elapsed: PT7M8.912S

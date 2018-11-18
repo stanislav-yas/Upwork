@@ -1,4 +1,4 @@
-package scrape_3;
+package scrape_3_dentistsinuk.co.uk;
 /*I’m looking for someone to help me build a list of contacts of dentists in the UK.
 Here is a website that lists out a lot of them. I've split the URLs into sections of the UK.
 http://www.dentistsinuk.co.uk/england

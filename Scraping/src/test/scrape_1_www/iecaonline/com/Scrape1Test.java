@@ -1,4 +1,4 @@
-package scrape_1;
+package scrape_1_www.iecaonline.com;
 
 import util.TestBase;
 import org.junit.Test;

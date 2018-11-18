@@ -1,4 +1,4 @@
-package scrape_1;
+package scrape_1_www.iecaonline.com;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

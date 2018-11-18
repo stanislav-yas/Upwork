@@ -1,4 +1,4 @@
-package scrape_3;
+package scrape_3_dentistsinuk.co.uk;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

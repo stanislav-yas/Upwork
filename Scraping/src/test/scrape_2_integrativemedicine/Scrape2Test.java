@@ -1,16 +1,11 @@
-package scrape_2;
+package scrape_2_integrativemedicine;
 
 import util.CsvWriter;
 import util.TestBase;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Scrape2Test extends TestBase {
 

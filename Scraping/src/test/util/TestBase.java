@@ -22,7 +22,7 @@ import java.time.Instant;
 
 public class TestBase {
 
-  protected WebDriver driver, driver2;
+  public static WebDriver driver, driver2;
   private Instant beginTime = Instant.now();
 
   @Before
