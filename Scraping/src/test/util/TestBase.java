@@ -49,6 +49,10 @@ public class TestBase {
     driver = new ChromeDriver();
   }
 
+  private void startChromeHeadless(){
+    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+  }
+
   private void startChromeViaProxy(){
     String proxyStr = "67.205.148.246:8080";//"198.50.137.181";
     ChromeOptions chromeOptions = new ChromeOptions();

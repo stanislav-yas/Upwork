@@ -1,4 +1,4 @@
-package scrape_4_food52.com;
+package scrape_4_food52_com;
 /*
  Looking for someone to scrape various retail websites for all product specific data
  (retailer, brand, product link, name, price, description, images).
@@ -9,7 +9,9 @@ package scrape_4_food52.com;
 
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import util.CsvWriter;
 import util.TestBase;
 
@@ -20,12 +22,16 @@ public class Scrape4Test extends TestBase {
 
   @Test
   public void scrape() throws Exception{
-    driver = new ChromeDriver();
-    driver2 = new ChromeDriver();
+    driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
+    driver2 = new ChromeDriver(new ChromeOptions().setHeadless(true));
     try {
-      //driver.manage().window().setSize(new Dimension(975, 530));
-      //driver.manage().window().setPosition(new Point(1678,0));
-      /*driver2.manage().window().setSize(new Dimension(975, 530));
+      driver.manage().window().setSize(new Dimension(1920, 746));
+      driver.manage().window().setPosition(new Point(1921,0));
+      driver2.manage().window().setSize(new Dimension(960, 746));
+      driver2.manage().window().setPosition(new Point(1921+960,0));
+/*      driver.manage().window().setSize(new Dimension(975, 530));
+      driver.manage().window().setPosition(new Point(1678,0));
+      driver2.manage().window().setSize(new Dimension(975, 530));
       driver2.manage().window().setPosition(new Point(1678,530));*/
       driver.manage().window().maximize();
       driver2.manage().window().maximize();

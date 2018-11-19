@@ -1,4 +1,4 @@
-package scrape_4_food52.com;
+package scrape_4_food52_com;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

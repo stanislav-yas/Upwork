@@ -1,4 +1,4 @@
-package scrape_4_food52.com;
+package scrape_4_food52_com;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -75,7 +75,7 @@ public class ShopPage extends AjaxPage {
         grandTotalItems += totalItems;
         System.out.println(" - " + itemsPerPage + " x " + pageCount + " = " + totalItems + " items");*/
         do {
-          for (int j = 0; j < 1/*shopItems.size()*/; j++) {
+          for (int j = 0; j < shopItems.size(); j++) {
             String productLink = shopItems.get(j).getAttribute("href");
             ProductPage productPage = new ProductPage(TestBase.driver2, 8, productLink);
             //"Num; MainCategory; SubCategory; Brand; Product Link; Title; Price; Product Description; Image1; Image2; Image3"
