@@ -7,6 +7,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -59,6 +61,18 @@ public class TestBase {
     chromeOptions.addArguments("--proxy-server=" + proxyStr);
     driver = new ChromeDriver(chromeOptions);
     //System.out.println(((ChromeDriver) driver).getCapabilities());
+  }
+
+  private void startFirefox() {
+    driver = new FirefoxDriver();
+  }
+
+  private void startFirefoxHeadless(){
+    driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
+    //FirefoxBinary binary = new FirefoxBinary();
+    //binary.addCommandLineOptions("--headless");
+    //options.setBinary(binary);
+
   }
 
   private void startRemoteBrowser(String platform, String browserName) throws Exception{

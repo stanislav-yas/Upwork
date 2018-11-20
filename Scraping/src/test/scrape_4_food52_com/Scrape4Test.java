@@ -12,6 +12,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import util.CsvWriter;
 import util.TestBase;
 
@@ -36,7 +38,7 @@ public class Scrape4Test extends TestBase {
       driver.manage().window().maximize();
       driver2.manage().window().maximize();
       writer = new CsvWriter("results\\scrape4.csv");
-      writer.addValue("Num; MainCategory; SubCategory; Brand; Product Link; Title; Price; Product Description; Image1; Image2; Image3"); writer.nextLine();
+      writer.addValue("Num; MainCategory; SubCategory; Brand; Product Link; Title; Price; Image1; Image2; Image3"); writer.nextLine();
       shopPage = new ShopPage(driver, 8, "https://food52.com/shop/");
       while(shopPage.topMenu.size() == 0){
         shopPage.driver.navigate().refresh();

@@ -1,5 +1,6 @@
 package scrape_1_www_iecaonline_com;
 
+import org.openqa.selenium.interactions.Actions;
 import util.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -16,11 +17,11 @@ public class Scrape1Test extends TestBase {
     driver2 = new ChromeDriver();
     BufferedWriter writer = null;
     try {
-      writer = new BufferedWriter(new FileWriter("result.csv"));
-      driver.manage().window().setSize(new Dimension(975, 752));
-      driver.manage().window().setPosition(new Point(1678,0));
-      driver2.manage().window().setSize(new Dimension(975, 793));
-      driver2.manage().window().setPosition(new Point(1678,247));
+      writer = new BufferedWriter(new FileWriter("results\\scrape1_iecaonline.com.csv"));
+      driver.manage().window().setSize(new Dimension(975, 528));
+      driver.manage().window().setPosition(new Point(1680,0));
+      driver2.manage().window().setSize(new Dimension(975, 507));
+      driver2.manage().window().setPosition(new Point(1680,530));
       MySearchPage page = new MySearchPage(driver,10,"https://www.iecaonline.com/quick-links/member-directory/");
       int pageCnt = 0;
       int rowCnt = 0;
@@ -28,10 +29,12 @@ public class Scrape1Test extends TestBase {
       do {
         pageCnt++;
         for (int i = 0; i < page.getRowCount(); i++) {
-          String firstName = page.getCell(i,1).getText();
+          WebElement cell_1 = page.getCell(i,1);
+          new Actions(driver).moveToElement(cell_1).perform();
+          String firstName = cell_1.getText();
           String lastName = page.getCell(i,2).getText();
           String primaryAddress = page.getCell(i,9).getText();
-          String url = page.getCell(i,1).findElement(By.cssSelector("a")).getAttribute("href");
+          String url = cell_1.findElement(By.cssSelector("a")).getAttribute("href");
           String email = "";
           try {
             DetailPage dpage = new DetailPage(driver2, 5, url);
