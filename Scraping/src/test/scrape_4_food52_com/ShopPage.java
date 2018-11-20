@@ -83,19 +83,24 @@ public class ShopPage extends AjaxPage {
             Scrape4Test.writer.addValue(Integer.toString(lineNum))
                 .addValue(mainCategory)
                 .addValue(subCategory)
-                .addValue(productPage.brand.getText())
+                .addValue(productPage.getBrand())
                 .addValue(productLink)
-                .addValue(productPage.title.getText())
-                .addValue(productPage.price.getText());
-            for (int k = 0; k < productPage.images.size(); k++) {
-              Scrape4Test.writer.addValue(productPage.images.get(k).getAttribute("data-zoom-src"));
+                .addValue(productPage.getTitle())
+                .addValue(productPage.getPrice());
+            List<WebElement> images = productPage.getImages();
+            int iSize = images.size();
+            if(iSize > 3) iSize = 3;
+            for (int k = 0; k < iSize; k++) {
+              try {
+                Scrape4Test.writer.addValue(images.get(k).getAttribute("data-zoom-src"));
+              }catch (Exception e){Scrape4Test.writer.addValue("");}
             }
             Scrape4Test.writer.nextLine();
           }
         }while(hasNextPage());
       }
     }
-    System.out.println("Total items: " + grandTotalItems);
+    System.out.println("Total items: " + lineNum);
   }
 
 }

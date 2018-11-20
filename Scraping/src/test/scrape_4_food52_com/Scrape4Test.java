@@ -25,11 +25,11 @@ public class Scrape4Test extends TestBase {
     driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
     driver2 = new ChromeDriver(new ChromeOptions().setHeadless(true));
     try {
-      driver.manage().window().setSize(new Dimension(1920, 746));
+      /*driver.manage().window().setSize(new Dimension(1920, 746));
       driver.manage().window().setPosition(new Point(1921,0));
       driver2.manage().window().setSize(new Dimension(960, 746));
-      driver2.manage().window().setPosition(new Point(1921+960,0));
-/*      driver.manage().window().setSize(new Dimension(975, 530));
+      driver2.manage().window().setPosition(new Point(1921+960,0));*/
+      /*driver.manage().window().setSize(new Dimension(975, 530));
       driver.manage().window().setPosition(new Point(1678,0));
       driver2.manage().window().setSize(new Dimension(975, 530));
       driver2.manage().window().setPosition(new Point(1678,530));*/

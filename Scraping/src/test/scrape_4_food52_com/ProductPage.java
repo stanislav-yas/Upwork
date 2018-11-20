@@ -10,25 +10,53 @@ import java.util.List;
 public class ProductPage extends AjaxPage {
 
   @FindBy(css = ".product-name")
-  protected WebElement title;
+  private WebElement title;
 
   @FindBy(css = ".merchant-name")
-  protected WebElement brand;
+  private WebElement brand;
 
   @FindBy(css = ".product-price")
-  protected WebElement price;
+  private WebElement price;
 
   @FindBy(css = ".product-chooser__variant")
-  protected WebElement variantChooser;
+  private WebElement variantChooser;
 
   @FindBy(css = ".product-description > p")
-  protected WebElement description;
+  private WebElement description;
 
   @FindBy(css = "li.product-images__list-item picture img")
-  protected List<WebElement> images; //[data-zoom-src]
+  private List<WebElement> images; //[data-zoom-src]
 
   public ProductPage(WebDriver driver, int timeout, String url){
     super(driver, timeout, url);
+  }
+
+  public String getTitle(){
+    try{
+      return title.getText();
+    }catch (Exception e){ return "";}
+  }
+
+  public String getBrand(){
+    try{
+      return brand.getText();
+    }catch (Exception e){ return "";}
+  }
+
+  public String getPrice(){
+    try{
+      return price.getText();
+    }catch (Exception e){ return "";}
+  }
+
+  public String getDescription(){
+    try{
+      return description.getText();
+    }catch (Exception e){ return "";}
+  }
+
+  public List<WebElement> getImages(){
+    return images;
   }
 
 }
