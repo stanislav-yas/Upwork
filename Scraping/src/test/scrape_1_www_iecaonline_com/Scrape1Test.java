@@ -1,6 +1,7 @@
 package scrape_1_www_iecaonline_com;
 
 import org.openqa.selenium.interactions.Actions;
+import util.CsvWriter;
 import util.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -11,13 +12,14 @@ import java.io.FileWriter;
 
 public class Scrape1Test extends TestBase {
 
+  static CsvWriter writer;
+
   @Test
   public void scrape1() throws Exception{
     driver = new ChromeDriver();
     driver2 = new ChromeDriver();
-    BufferedWriter writer = null;
     try {
-      writer = new BufferedWriter(new FileWriter("results\\scrape1_iecaonline.com.csv"));
+      writer = new CsvWriter("results\\scrape1_iecaonline.com.csv");
       driver.manage().window().setSize(new Dimension(975, 528));
       driver.manage().window().setPosition(new Point(1680,0));
       driver2.manage().window().setSize(new Dimension(975, 507));
@@ -43,8 +45,14 @@ public class Scrape1Test extends TestBase {
             System.out.println("Error:"+ex.getMessage());
           }
           rowCnt++;
-          writer.write((pageCnt) + ";" + (rowCnt) + ";" + firstName + ";" + lastName + ";" + primaryAddress + ";" + email);
-          writer.newLine(); writer.flush();
+          writer.addValue(Integer.toString(pageCnt))
+              .addValue(Integer.toString(rowCnt))
+              .addValue(firstName)
+              .addValue(lastName)
+              .addValue(primaryAddress)
+              .addValue(email)
+              .nextLine()
+              .flush();
         }
       } while (page.nextSearchResultPage());
     }catch (Exception ex){

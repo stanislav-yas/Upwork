@@ -19,27 +19,23 @@ import util.TestBase;
 
 public class Scrape4Test extends TestBase {
 
-  protected static CsvWriter writer;
-  private ShopPage shopPage;
+  static CsvWriter writer;
 
   @Test
   public void scrape() throws Exception{
     driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
-    driver2 = new ChromeDriver(new ChromeOptions().setHeadless(true));
+    driver2 = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
     try {
-      /*driver.manage().window().setSize(new Dimension(1920, 746));
-      driver.manage().window().setPosition(new Point(1921,0));
-      driver2.manage().window().setSize(new Dimension(960, 746));
-      driver2.manage().window().setPosition(new Point(1921+960,0));*/
-      /*driver.manage().window().setSize(new Dimension(975, 530));
-      driver.manage().window().setPosition(new Point(1678,0));
-      driver2.manage().window().setSize(new Dimension(975, 530));
-      driver2.manage().window().setPosition(new Point(1678,530));*/
-      driver.manage().window().maximize();
-      driver2.manage().window().maximize();
+      int shiftX = 1920/*1678*/;
+      driver.manage().window().setSize(new Dimension(1039, 746));
+      driver.manage().window().setPosition(new Point(shiftX,0));
+      driver2.manage().window().setSize(new Dimension(882, 746));
+      driver2.manage().window().setPosition(new Point(shiftX + 1039,0));
+      /*driver.manage().window().maximize();
+      driver2.manage().window().maximize();*/
       writer = new CsvWriter("results\\scrape4.csv");
       writer.addValue("Num; MainCategory; SubCategory; Brand; Product Link; Title; Price; Image1; Image2; Image3"); writer.nextLine();
-      shopPage = new ShopPage(driver, 8, "https://food52.com/shop/");
+      ShopPage shopPage = new ShopPage(driver, 8, "https://food52.com/shop/");
       while(shopPage.topMenu.size() == 0){
         shopPage.driver.navigate().refresh();
       }

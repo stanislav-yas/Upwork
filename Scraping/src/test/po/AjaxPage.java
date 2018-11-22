@@ -29,4 +29,9 @@ public class AjaxPage /*extends AjaxPageObject*/ {
   protected void clickElementJS(WebElement element){
     ((JavascriptExecutor) driver).executeScript("arguments[0].click()", element);
   }
+
+  protected void scrollIntoView(WebElement element){
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+  }
+
 }
