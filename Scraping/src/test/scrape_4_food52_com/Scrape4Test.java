@@ -26,7 +26,7 @@ public class Scrape4Test extends TestBase {
     driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
     driver2 = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
     try {
-      int shiftX = 1920/*1678*/;
+      int shiftX = /*1920*/ 1678;
       driver.manage().window().setSize(new Dimension(1039, 746));
       driver.manage().window().setPosition(new Point(shiftX,0));
       driver2.manage().window().setSize(new Dimension(882, 746));

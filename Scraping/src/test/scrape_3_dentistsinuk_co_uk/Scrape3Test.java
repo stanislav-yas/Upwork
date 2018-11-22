@@ -36,7 +36,7 @@ public class Scrape3Test extends TestBase {
       //driver.manage().window().maximize();
       writer = new CsvWriter("results\\scrape3.csv");
       writer.addValue("Num; Dental Practice Name; Email; Website"); writer.nextLine();
-      page = new MySearchPage3(driver, 8, "http://www.dentistsinuk.co.uk/northern-ireland");
+      page = new MySearchPage3(driver, 8, "http://www.dentistsinuk.co.uk/england");
       processResultTable();
     }catch (Exception ex){
       throw ex;
