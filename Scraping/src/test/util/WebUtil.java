@@ -32,8 +32,9 @@ public class WebUtil {
       InputStream in = httpURLConnection.getInputStream();
       Files.copy(in, new File(pathToSave).toPath(),
           StandardCopyOption.REPLACE_EXISTING);
+      httpURLConnection.disconnect();
     }catch (Exception e){
-      System.out.println("Error occurred in downloadFile:" + e.getMessage());
+      System.out.println("Error occurred in downloadFile: " + e.getMessage());
     }
     return ret;
   }

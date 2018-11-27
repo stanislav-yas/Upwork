@@ -96,7 +96,7 @@ class ShopPage extends AjaxPage {
             for (int k = 0; k < iSize; k++) {
               try {
                 String imageHref = images.get(k).getAttribute("data-zoom-src");
-                WebUtil.downloadFile(imageHref, "//results//image" + lineNum + k + "." + WebUtil.getFilenameExtension(imageHref));
+                //WebUtil.downloadFile(imageHref, "results\\image" + lineNum + "_" + (k+1) + "." + WebUtil.getFilenameExtension(imageHref));
                 Scrape4Test.writer.addValue(imageHref);
               }catch (Exception e){Scrape4Test.writer.addValue("");}
             }
