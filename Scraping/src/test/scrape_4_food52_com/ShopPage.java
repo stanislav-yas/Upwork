@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import po.AjaxPage;
 import util.TestBase;
+import util.WebUtil;
+
 import java.util.List;
 
 class ShopPage extends AjaxPage {
@@ -93,7 +95,9 @@ class ShopPage extends AjaxPage {
             if(iSize > 3) iSize = 3;
             for (int k = 0; k < iSize; k++) {
               try {
-                Scrape4Test.writer.addValue(images.get(k).getAttribute("data-zoom-src"));
+                String imageHref = images.get(k).getAttribute("data-zoom-src");
+                WebUtil.downloadFile(imageHref, "//results//image" + lineNum + k + "." + WebUtil.getFilenameExtension(imageHref));
+                Scrape4Test.writer.addValue(imageHref);
               }catch (Exception e){Scrape4Test.writer.addValue("");}
             }
             Scrape4Test.writer.nextLine();
