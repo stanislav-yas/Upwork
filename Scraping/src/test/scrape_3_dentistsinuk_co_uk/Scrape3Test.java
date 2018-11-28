@@ -1,16 +1,16 @@
+//I’m looking for someone to help me build a list of contacts of dentists in the UK.
+//Here is a website that lists out a lot of them. I've split the URLs into sections of the UK.
+//http://www.dentistsinuk.co.uk/england
+//http://www.dentistsinuk.co.uk/wales
+//http://www.dentistsinuk.co.uk/scotland
+//http://www.dentistsinuk.co.uk/northern-ireland
+//I need you to gather their:
+//• Dental Practice Name
+//• Email Address (ESSENTIAL)
+//• Website URL
+//I’ll just need you to populate it into a Google Sheet.
+//Fixed-price project - $100
 package scrape_3_dentistsinuk_co_uk;
-/*I’m looking for someone to help me build a list of contacts of dentists in the UK.
-Here is a website that lists out a lot of them. I've split the URLs into sections of the UK.
-http://www.dentistsinuk.co.uk/england
-http://www.dentistsinuk.co.uk/wales
-http://www.dentistsinuk.co.uk/scotland
-http://www.dentistsinuk.co.uk/northern-ireland
-I need you to gather their:
-• Dental Practice Name
-• Email Address (ESSENTIAL)
-• Website URL
-I’ll just need you to populate it into a Google Sheet.
-Fixed-price project - $100*/
 
 import org.junit.Test;
 import org.openqa.selenium.Dimension;

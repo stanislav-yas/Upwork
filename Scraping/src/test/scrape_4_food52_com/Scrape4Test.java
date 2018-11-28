@@ -1,11 +1,10 @@
+// Looking for someone to scrape various retail websites for all product specific data
+// (retailer, brand, product link, name, price, description, images).
+// For example, if given the website food52.com,
+// we would want a Google Sheets document listing all of the above information
+// for each of the products they sell through their site.
+
 package scrape_4_food52_com;
-/*
- Looking for someone to scrape various retail websites for all product specific data
- (retailer, brand, product link, name, price, description, images).
- For example, if given the website food52.com,
- we would want a Google Sheets document listing all of the above information
- for each of the products they sell through their site.
-*/
 
 import org.junit.Test;
 import org.openqa.selenium.Dimension;

@@ -1,3 +1,7 @@
+//The client needed to get contact information on graduates of The University of Arizona Center for Integrative Medicine:
+//https://integrativemedicine.arizona.edu/alumni.html The selection was made according to several criteria.
+//The result was presented as a CSV file.
+
 package scrape_2_integrativemedicine;
 
 import util.CsvWriter;

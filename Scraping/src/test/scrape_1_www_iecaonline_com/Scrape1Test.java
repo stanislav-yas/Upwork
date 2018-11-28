@@ -1,3 +1,5 @@
+//In this project, it was necessary to obtain a complete list of members of the Independent Educational Association
+// of Consultants and their contact info
 package scrape_1_www_iecaonline_com;
 
 import org.openqa.selenium.interactions.Actions;
