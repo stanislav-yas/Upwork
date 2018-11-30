@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import util.CsvWriter;
+import util.ProxyList;
 import util.TestBase;
 
 public class Scrape4Test extends TestBase {
@@ -23,9 +24,12 @@ public class Scrape4Test extends TestBase {
   @Test
   public void scrape() throws Exception{
     driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
+    driver.manage().window().maximize();
+    ProxyList proxyList = new ProxyList(driver);
+    ProxyList.Entry proxy = proxyList.getProxyByNum(5);
     driver2 = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
     try {
-      int shiftX = /*1920*/ 1678;
+      int shiftX = 1920 /*1678*/;
       driver.manage().window().setSize(new Dimension(1039, 746));
       driver.manage().window().setPosition(new Point(shiftX,0));
       driver2.manage().window().setSize(new Dimension(882, 746));
