@@ -1,6 +1,10 @@
 package util;
 
 import com.sun.istack.internal.NotNull;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.io.InputStream;
@@ -46,5 +50,38 @@ public class WebUtil {
       return fileName.substring(fileName.lastIndexOf(".") + 1);
       // в противном случае возвращаем заглушку, то есть расширение не найдено
     else return "";
+  }
+
+  public static boolean isPageReached(WebDriver driver, String url){
+    try{
+      driver.navigate().to(url);
+    }catch (WebDriverException e){
+      System.out.println("Page:" + url + " is not reached");
+      return false;
+    }
+    return true;
+  }
+
+  public static void setProxyAtFirefoxJS(FirefoxDriver driver, String host, String port){
+    driver.navigate().to("about:config");
+    String script = "var prefs = Components.classes[\"@mozilla.org/preferences-service;1\"]" +
+        ".getService(Components.interfaces.nsIPrefBranch);" +
+        "prefs.setIntPref(\"network.proxy.type\", 1);" +
+        "prefs.setCharPref(\"network.proxy.http\", \"" + host + "\");" +
+        "prefs.setIntPref(\"network.proxy.http_port\", \"" + port + "\")";
+    ((JavascriptExecutor) driver).executeScript(script, host, port);
+    try{
+      Thread.sleep(1000);
+    }catch (InterruptedException e){}
+  }
+
+  public static void setNoProxyAtFirefoxJS(FirefoxDriver driver){
+    driver.navigate().to("about:config");
+    String script = "var prefs = Components.classes[\"@mozilla.org/preferences-service;1\"]" +
+        ".getService(Components.interfaces.nsIPrefBranch);" +
+        "prefs.setIntPref(\"network.proxy.type\", 0)";
+    try{
+      Thread.sleep(1000);
+    }catch (InterruptedException e){}
   }
 }

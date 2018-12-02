@@ -9,13 +9,19 @@ package scrape_4_food52_com;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import util.CsvWriter;
 import util.ProxyList;
 import util.TestBase;
+import util.WebUtil;
+
+import java.util.concurrent.TimeUnit;
 
 public class Scrape4Test extends TestBase {
 
@@ -23,19 +29,16 @@ public class Scrape4Test extends TestBase {
 
   @Test
   public void scrape() throws Exception{
-    driver = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
-    driver.manage().window().maximize();
-    ProxyList proxyList = new ProxyList(driver);
-    ProxyList.Entry proxy = proxyList.getProxyByNum(5);
-    driver2 = new ChromeDriver(/*new ChromeOptions().setHeadless(true)*/);
+    driver = new ChromeDriver();
+    driver2 = new ChromeDriver(new ChromeOptions().setHeadless(true));
     try {
-      int shiftX = 1920 /*1678*/;
+      int shiftX = /*1920*/ 1678;
       driver.manage().window().setSize(new Dimension(1039, 746));
       driver.manage().window().setPosition(new Point(shiftX,0));
       driver2.manage().window().setSize(new Dimension(882, 746));
       driver2.manage().window().setPosition(new Point(shiftX + 1039,0));
-      /*driver.manage().window().maximize();
-      driver2.manage().window().maximize();*/
+      driver.manage().window().maximize();
+      driver2.manage().window().maximize();
       writer = new CsvWriter("results\\scrape4.csv");
       writer.addValue("Num; MainCategory; SubCategory; Brand; Product Link; Title; Price; Image1; Image2; Image3"); writer.nextLine();
       ShopPage shopPage = new ShopPage(driver, 8, "https://food52.com/shop/");
@@ -48,9 +51,5 @@ public class Scrape4Test extends TestBase {
     }finally {
       writer.flush(); writer.close();
     }
-  }
-
-  private void processResultTable(){
-
   }
 }

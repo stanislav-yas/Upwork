@@ -16,8 +16,11 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import util.CsvWriter;
+import util.ProxyList;
 import util.TestBase;
+import util.WebUtil;
 
 public class Scrape3Test extends TestBase {
 
@@ -27,7 +30,7 @@ public class Scrape3Test extends TestBase {
   @Test
   public void scrape() throws Exception{
     driver = new ChromeDriver();
-    driver2 = new ChromeDriver();
+    driver2 = new FirefoxDriver();
     try {
       driver.manage().window().setSize(new Dimension(975, 530));
       driver.manage().window().setPosition(new Point(1678,0));
@@ -36,7 +39,7 @@ public class Scrape3Test extends TestBase {
       //driver.manage().window().maximize();
       writer = new CsvWriter("results\\scrape3.csv");
       writer.addValue("Num; Dental Practice Name; Email; Website"); writer.nextLine();
-      page = new MySearchPage3(driver, 8, "http://www.dentistsinuk.co.uk/england");
+      page = new MySearchPage3(driver, 8, "http://www.dentistsinuk.co.uk/wales");
       processResultTable();
     }catch (Exception ex){
       throw ex;
@@ -46,10 +49,13 @@ public class Scrape3Test extends TestBase {
   }
 
   private void processResultTable(){
+    ProxyList proxyList = new ProxyList(driver2, 25);
     System.out.println("searched rows: " + page.getRowCount());
     for (int i = 0; i < page.getRowCount(); i++) {
       String detailUrl = page.getDetailUrl(i);
       if(detailUrl != null){
+        ProxyList.Entry proxy = proxyList.getRandomProxy();
+        WebUtil.setProxyAtFirefoxJS((FirefoxDriver) driver2, proxy.getIp(), proxy.getPort());
         DetailPage dpage = new DetailPage(driver2, 9, detailUrl);
         writer.addValue(String.valueOf(i+1))
             .addValue(dpage.getName())
