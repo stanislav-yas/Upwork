@@ -15,6 +15,7 @@ package scrape_3_dentistsinuk_co_uk;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import util.CsvWriter;
@@ -22,16 +23,21 @@ import util.ProxyList;
 import util.TestBase;
 import util.WebUtil;
 
+import java.util.concurrent.TimeUnit;
+
 public class Scrape3Test extends TestBase {
 
   private CsvWriter writer;
   private MySearchPage3 page;
+  private ProxyList proxyList;
 
   @Test
   public void scrape() throws Exception{
     driver = new ChromeDriver();
     driver2 = new FirefoxDriver();
     try {
+      driver.manage().window().maximize();
+      proxyList = new ProxyList(driver, 25);
       driver.manage().window().setSize(new Dimension(975, 530));
       driver.manage().window().setPosition(new Point(1678,0));
       driver2.manage().window().setSize(new Dimension(975, 530));
@@ -49,14 +55,20 @@ public class Scrape3Test extends TestBase {
   }
 
   private void processResultTable(){
-    ProxyList proxyList = new ProxyList(driver2, 25);
     System.out.println("searched rows: " + page.getRowCount());
     for (int i = 0; i < page.getRowCount(); i++) {
       String detailUrl = page.getDetailUrl(i);
       if(detailUrl != null){
-        ProxyList.Entry proxy = proxyList.getRandomProxy();
-        WebUtil.setProxyAtFirefoxJS((FirefoxDriver) driver2, proxy.getIp(), proxy.getPort());
-        DetailPage dpage = new DetailPage(driver2, 9, detailUrl);
+        ProxyList.Entry proxy;
+        DetailPage dpage = null;
+        driver2.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        do{
+          proxy = proxyList.getRandomProxy();
+          WebUtil.setProxyAtFirefoxJS((FirefoxDriver) driver2, proxy.getIp(), proxy.getPort());
+          try {
+            dpage = new DetailPage(driver2, 8, detailUrl);
+          }catch (WebDriverException e){}
+        } while (dpage == null);
         writer.addValue(String.valueOf(i+1))
             .addValue(dpage.getName())
             .addValue(dpage.getEmail())
