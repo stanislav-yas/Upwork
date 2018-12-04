@@ -61,7 +61,7 @@ public class Scrape3Test extends TestBase {
       if(detailUrl != null){
         ProxyList.Entry proxy;
         DetailPage dpage = null;
-        driver2.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver2.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         do{
           proxy = proxyList.getRandomProxy();
           WebUtil.setProxyAtFirefoxJS((FirefoxDriver) driver2, proxy.getIp(), proxy.getPort());
