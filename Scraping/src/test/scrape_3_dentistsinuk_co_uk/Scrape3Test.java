@@ -47,8 +47,6 @@ public class Scrape3Test extends TestBase {
       writer.addValue("Num; Dental Practice Name; Email; Website"); writer.nextLine();
       page = new MySearchPage3(driver, 8, "http://www.dentistsinuk.co.uk/wales");
       processResultTable();
-    }catch (Exception ex){
-      throw ex;
     }finally {
       writer.flush(); writer.close();
     }

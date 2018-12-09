@@ -1,10 +1,10 @@
 package util;
 
-import com.sun.istack.internal.NotNull;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.File;
 import java.io.InputStream;
@@ -14,6 +14,12 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 public class WebUtil {
+
+  private static EmailValidator emailValidator = EmailValidator.getInstance();
+
+  public static boolean isEmailValid(String emailAddress){
+    return emailValidator.isValid(emailAddress);
+  }
 
   public static String downloadFile(String href, String pathToSave){
     String ret = "";

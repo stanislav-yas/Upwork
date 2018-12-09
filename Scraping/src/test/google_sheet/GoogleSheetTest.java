@@ -8,14 +8,13 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.Spreadsheet;
-import com.google.api.services.sheets.v4.model.SpreadsheetProperties;
-import com.google.api.services.sheets.v4.model.ValueRange;
+import com.google.api.services.sheets.v4.model.*;
 import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -79,7 +78,53 @@ public class GoogleSheetTest {
   }
 
   @Test
-  public void createSheetTest(){
+  public void updatingSheetSingleRangeTest(){
+    List<List<Object>> values = Arrays.asList(
+        Arrays.asList("Ячейка A10","Ячейка B10","Ячейка C10","Ячейка D10"
+            // Cell values ...
+        ),
+        Arrays.asList("Ячейка A11","Ячейка B11","Ячейка C11","Ячейка D11")
+        // Additional rows ...
+    );
+    try{
+      if(credential == null){
+        credential = getServiceCredential();
+      }
+      Sheets sheetService = new Sheets.Builder(getTransport(), JSON_FACTORY, credential)
+          .setApplicationName(APPLICATION_NAME)
+          .build();
+      ValueRange body = new ValueRange()
+          .setValues(values);
+      String range = "Sheet1!A10:D11";
+      UpdateValuesResponse result =
+          sheetService.spreadsheets().values().update(SPREADSHEET_ID, range, body)
+              .setValueInputOption("RAW")  // RAW | USER_ENTERED
+              .execute();
+      System.out.printf("%d cells updated.", result.getUpdatedCells());
+      // appending values
+      range = "Sheet1!A1:D1";
+      values = Arrays.asList(
+          Arrays.asList("Append A1","Append B1","Append C1","Append D1"
+              // Cell values ...
+          ));
+      body = new ValueRange()
+          .setValues(values);
+      AppendValuesResponse response =
+          sheetService.spreadsheets().values().append(SPREADSHEET_ID, range, body)
+              .setValueInputOption("RAW") // RAW | USER_ENTERED
+              .setInsertDataOption("INSERT_ROWS") // INSERT_ROWS | OVERWRITE
+              .execute();
+      System.out.printf("%d cells updated.", response.getUpdates().getUpdatedCells());
+    }catch (Exception e ) {
+      System.out.println("Writing SheetSingleRange error: " + e.getMessage());
+      System.exit(1);
+    }
+  }
+
+
+
+  @Test
+  public void createSpreadsheetTest(){
     try{
       if(credential == null){
         credential = getServiceCredential();
@@ -94,8 +139,7 @@ public class GoogleSheetTest {
       spreadsheet = sheetService.spreadsheets().create(spreadsheet)
           .setFields("spreadsheetId")
           .execute();
-      System.out.println("Spreadsheet ID: " + spreadsheet.getSpreadsheetId()); //Spreadsheet ID: 1ZptU7RYb9QZY_Ym1dx2GGbsLtCFsltqyir1QCJjz3Fg
-      //1M2-5JRUkuRL15r_04GPT4a4QKfEtX0SJyMkrk07RUm0
+      System.out.println("Spreadsheet ID: " + spreadsheet.getSpreadsheetId());
     }catch (Exception e ){
       System.out.println("Creating Sheet error: " + e.getMessage());
       System.exit(1);
